@@ -83,14 +83,14 @@
                                 <input type="number" class="form-control" id="splashHeight" name="splashHeight" required>
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label for="themeColor">Theme Color (RGB)</label>
-                                <div class="d-flex">
-                                    <input type="number" class="form-control me-2" placeholder="Red" name="themeRed" min="0" max="255" required>
-                                    <input type="number" class="form-control me-2" placeholder="Green" name="themeGreen" min="0" max="255" required>
-                                    <input type="number" class="form-control" placeholder="Blue" name="themeBlue" min="0" max="255" required>
-                                </div>
-                            </div>
+                            <!-- Color Picker for Theme Color -->
+                            <label for="themeColor">Select Theme Color:</label>
+                            <input type="color" id="themeColorPicker" name="themeColorPicker" value="#c7402f" onchange="updateRGBValues(this.value)">
+
+                            <!-- Hidden fields to store RGB values -->
+                            <input type="hidden" id="themeRed" name="themeRed">
+                            <input type="hidden" id="themeGreen" name="themeGreen">
+                            <input type="hidden" id="themeBlue" name="themeBlue">
 
                             <div class="form-group mb-3">
                                 <label for="loadURL">Load URL</label>
@@ -115,10 +115,10 @@
                             <button type="button" id="add-menu" class="btn btn-secondary mb-3">Create a Custom Menu</button>
 
                             <!-- Icon upload -->
-    <div class="form-group mb-3">
-        <label for="icon">Upload Icon (PNG, JPG, JPEG, SVG)</label>
-        <input type="file" class="form-control" id="icon" name="icon" required>
-    </div>
+                            <div class="form-group mb-3">
+                            <label for="icon">Upload Icon (PNG, JPG, JPEG, SVG)</label>
+                            <input type="file" class="form-control" id="icon" name="icon" required>
+                            </div>
 
                             <button type="submit" class="btn btn-primary">Generate JS</button>
                         </form>
@@ -147,6 +147,23 @@
             </div>
         </div>
     </div>
+    
+    <script>
+    function updateRGBValues(hex) {
+        // Convert hex color to RGB
+        let r = parseInt(hex.slice(1, 3), 16);
+        let g = parseInt(hex.slice(3, 5), 16);
+        let b = parseInt(hex.slice(5, 7), 16);
+
+        // Set the RGB values in hidden inputs
+        document.getElementById('themeRed').value = r;
+        document.getElementById('themeGreen').value = g;
+        document.getElementById('themeBlue').value = b;
+    }
+
+    // Initialize with default color
+    updateRGBValues(document.getElementById('themeColorPicker').value);
+</script>
 
     <script>
         document.getElementById('add-menu').addEventListener('click', function() {
