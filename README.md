@@ -4,7 +4,7 @@ Welcome to **App Builder**, your all-in-one solution for creating and configurin
 
 ## Features
 
-### 🌟 Dynamic Form Creation
+### 🌟 Custom App data
 - Easily create forms to capture essential app details, including:
   - App Name
   - Version
