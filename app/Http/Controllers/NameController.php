@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use App\Models\Appname;
 
 class NameController extends Controller
 {
-    // Display form and list of names
-    public function index()
-    {
-        $names = Name::all();
-        return view('names.index', compact('names'));
-    }
-
+  // Show the main view
+  public function index()
+  {
+      return view('index'); // Make sure 'index.blade.php' exists in resources/views
+  }
     // Store the input and generate JS file
     public function store(Request $request)
 {
@@ -232,6 +230,15 @@ public function exportJson(Request $request)
         'appID' => 'required|string',
         'productName' => 'required|string',
     ]);
+
+    // Save the data into the appname table
+    Appname::create([
+        'appName' => $request->appName,
+        'appVersion' => $request->appVersion,
+        'appDescription' => $request->appDescription,
+        'appID' => $request->appID,
+        'productName' => $request->productName,
+      ]);
 
     // Prepare the JSON content
     $jsonData = [

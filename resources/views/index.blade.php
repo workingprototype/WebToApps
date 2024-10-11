@@ -143,26 +143,27 @@
 
                             <button type="submit" class="btn btn-primary">Generate JS</button>
                         </form>
-                        <form action="{{ route('names.exportJson') }}" method="POST">
-                        @csrf
-                        <h2>App Details</h2>
-                        <label for="appName">App Name</label>
-                        <input type="text" name="appName" required>
-
-                        <label for="appVersion">App Version</label>
-                        <input type="text" name="appVersion" required>
-
-                        <label for="appDescription">App Description</label>
-                        <input type="text" name="appDescription" required>
-
-                        <label for="appID">App ID</label>
-                        <input type="text" name="appID" required>
-
-                        <label for="productName">Product Name</label>
-                        <input type="text" name="productName" required>
-
-                        <button type="submit">Export JSON</button>
-                    </form>
+                        <form action="{{ route('names.exportJson') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <!-- Add your form inputs for appName, appVersion, etc. -->
+    <div class="form-group mb-3">
+    <input type="text" name="appName" placeholder="App Name" required>
+    </div>
+    <div class="form-group mb-3">
+    <input type="text" name="appVersion" placeholder="App Version" required>
+    </div>
+    <div class="form-group mb-3">
+    <textarea name="appDescription" class="form-control" placeholder="App Description" required></textarea>
+    </div>
+    <div class="form-group mb-3">
+    <input type="text" name="appID" placeholder="App ID" required>
+    </div>
+    <div class="form-group mb-3">
+    <input type="text" name="productName" placeholder="Product Name" required>
+    </div>
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+</form>
                     </div>
                 </div>
             </div>
