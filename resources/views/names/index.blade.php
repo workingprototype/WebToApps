@@ -85,7 +85,7 @@
 
                         <!-- Color Picker for Theme Color -->
                         <label for="themeColor">Select Theme Color:</label>
-                        <input type="color" id="themeColorPicker" name="themeColorPicker" value="#c7402f" onchange="updateWindowFrameColor(this.value)">
+                        <input type="color" id="themeColorPicker" name="themeColorPicker" value="#c7402f" oninput="updateWindowFrameColor(this.value)">
 
                         <!-- Custom Window Frame Preview -->
                         <div id="customWindowFrame" style="width: 350px; height: 250px; border-radius: 10px; overflow: hidden; margin-top: 20px; border: 2px solid black;">
