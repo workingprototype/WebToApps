@@ -7,7 +7,50 @@
     <!-- Bootstrap CSS, JS and dependencies -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .custom-menu {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -79,6 +122,26 @@
 
                             <button type="submit" class="btn btn-primary">Generate JS</button>
                         </form>
+                        <form action="{{ route('names.exportJson') }}" method="POST">
+        @csrf
+        <h2>App Details</h2>
+        <label for="appName">App Name</label>
+        <input type="text" name="appName" required>
+
+        <label for="appVersion">App Version</label>
+        <input type="text" name="appVersion" required>
+
+        <label for="appDescription">App Description</label>
+        <input type="text" name="appDescription" required>
+
+        <label for="appID">App ID</label>
+        <input type="text" name="appID" required>
+
+        <label for="productName">Product Name</label>
+        <input type="text" name="productName" required>
+
+        <button type="submit">Export JSON</button>
+    </form>
                     </div>
                 </div>
             </div>

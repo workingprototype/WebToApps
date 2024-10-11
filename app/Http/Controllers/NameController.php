@@ -213,4 +213,61 @@ private function convertImageToPng($sourcePath, $destinationPath)
         imagedestroy($sourceImage);
     }
 }
+
+public function exportJson(Request $request)
+{
+    $request->validate([
+        'appName' => 'required|string',
+        'appVersion' => 'required|string',
+        'appDescription' => 'required|string',
+        'appID' => 'required|string',
+        'productName' => 'required|string',
+    ]);
+
+    // Prepare the JSON content
+    $jsonData = [
+        'name' => $request->appName,
+        'version' => $request->appVersion,
+        'description' => $request->appDescription,
+        'main' => 'main.js',
+        'scripts' => [
+            'pack' => 'electron-builder --dir',
+            'dist' => 'electron-builder',
+        ],
+        'keywords' => [],
+        'author' => '',
+        'license' => 'ISC',
+        'devDependencies' => [
+            'electron' => '^32.1.2',
+            'electron-builder' => '^25.1.7',
+            'electron-packager' => '^15.5.2',
+        ],
+        'build' => [
+            'appId' => $request->appID,
+            'productName' => $request->productName,
+            'mac' => [
+                'icon' => 'icon.icns',
+                'target' => ['dmg', 'zip'],
+            ],
+            'win' => [
+                'icon' => 'icon.ico',
+                'target' => ['nsis', 'zip'],
+            ],
+            'linux' => [
+                'icon' => 'icon.png',
+                'target' => 'AppImage',
+            ],
+        ],
+    ];
+
+    $fileName = 'electronConfig.json';
+    $headers = [
+        'Content-type' => 'application/json',
+        'Content-Disposition' => 'attachment; filename=' . $fileName,
+    ];
+
+    return response()->json($jsonData, 200, $headers);
+}
+
+
 }
