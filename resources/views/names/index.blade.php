@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Electron Configuration Form</div>
+                    <div class="card-header">WebToApp Builder</div>
 
                     <div class="card-body">
                     <form action="{{ route('names.store') }}" method="POST" enctype="multipart/form-data">
