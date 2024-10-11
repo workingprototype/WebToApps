@@ -87,6 +87,7 @@
                         <label for="themeColor">Select Theme Color:</label>
                         <input type="color" id="themeColorPicker" name="themeColorPicker" value="#c7402f" oninput="updateWindowFrameColor(this.value)">
 
+                        <div class="form-group mb-3">
                         <!-- Custom Window Frame Preview -->
                         <div id="customWindowFrame" style="width: 350px; height: 250px; border-radius: 10px; overflow: hidden; margin-top: 20px; border: 2px solid black;">
                         <!-- Window Title Bar -->
@@ -102,6 +103,7 @@
                         <!-- Window Content Area -->
                         <div style="background-color: white; height: calc(100% - 30px); display: flex; align-items: center; justify-content: center;">
                             <p style="text-align: center; color: gray;">App Content</p>
+                        </div>
                         </div>
                         </div>
 
