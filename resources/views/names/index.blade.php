@@ -142,25 +142,25 @@
                             <button type="submit" class="btn btn-primary">Generate JS</button>
                         </form>
                         <form action="{{ route('names.exportJson') }}" method="POST">
-        @csrf
-        <h2>App Details</h2>
-        <label for="appName">App Name</label>
-        <input type="text" name="appName" required>
+                        @csrf
+                        <h2>App Details</h2>
+                        <label for="appName">App Name</label>
+                        <input type="text" name="appName" required>
 
-        <label for="appVersion">App Version</label>
-        <input type="text" name="appVersion" required>
+                        <label for="appVersion">App Version</label>
+                        <input type="text" name="appVersion" required>
 
-        <label for="appDescription">App Description</label>
-        <input type="text" name="appDescription" required>
+                        <label for="appDescription">App Description</label>
+                        <input type="text" name="appDescription" required>
 
-        <label for="appID">App ID</label>
-        <input type="text" name="appID" required>
+                        <label for="appID">App ID</label>
+                        <input type="text" name="appID" required>
 
-        <label for="productName">Product Name</label>
-        <input type="text" name="productName" required>
+                        <label for="productName">Product Name</label>
+                        <input type="text" name="productName" required>
 
-        <button type="submit">Export JSON</button>
-    </form>
+                        <button type="submit">Export JSON</button>
+                    </form>
                     </div>
                 </div>
             </div>
