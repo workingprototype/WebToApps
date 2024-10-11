@@ -83,14 +83,33 @@
                                 <input type="number" class="form-control" id="splashHeight" name="splashHeight" required>
                             </div>
 
-                            <!-- Color Picker for Theme Color -->
-                            <label for="themeColor">Select Theme Color:</label>
-                            <input type="color" id="themeColorPicker" name="themeColorPicker" value="#c7402f" onchange="updateRGBValues(this.value)">
+                        <!-- Color Picker for Theme Color -->
+                        <label for="themeColor">Select Theme Color:</label>
+                        <input type="color" id="themeColorPicker" name="themeColorPicker" value="#c7402f" onchange="updateWindowFrameColor(this.value)">
 
-                            <!-- Hidden fields to store RGB values -->
-                            <input type="hidden" id="themeRed" name="themeRed">
-                            <input type="hidden" id="themeGreen" name="themeGreen">
-                            <input type="hidden" id="themeBlue" name="themeBlue">
+                        <!-- Custom Window Frame Preview -->
+                        <div id="customWindowFrame" style="width: 350px; height: 250px; border-radius: 10px; overflow: hidden; margin-top: 20px; border: 2px solid black;">
+                        <!-- Window Title Bar -->
+                        <div id="windowTitleBar" style="background-color: rgb(199, 64, 47); height: 30px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
+                            <span style="color: white;">App Window</span>
+                            <div style="display: flex; gap: 5px;">
+                                <!-- Minimize, Maximize, Close Buttons -->
+                                <span style="width: 12px; height: 12px; background-color: #ffcc00; border-radius: 50%; display: inline-block;"></span>
+                                <span style="width: 12px; height: 12px; background-color: #00cc66; border-radius: 50%; display: inline-block;"></span>
+                                <span style="width: 12px; height: 12px; background-color: #ff3300; border-radius: 50%; display: inline-block;"></span>
+                            </div>
+                        </div>
+                        <!-- Window Content Area -->
+                        <div style="background-color: white; height: calc(100% - 30px); display: flex; align-items: center; justify-content: center;">
+                            <p style="text-align: center; color: gray;">App Content</p>
+                        </div>
+                        </div>
+
+                        <!-- Hidden fields to store RGB values -->
+                        <input type="hidden" id="themeRed" name="themeRed">
+                        <input type="hidden" id="themeGreen" name="themeGreen">
+                        <input type="hidden" id="themeBlue" name="themeBlue">
+
 
                             <div class="form-group mb-3">
                                 <label for="loadURL">Load URL</label>
@@ -148,8 +167,8 @@
         </div>
     </div>
     
-    <script>
-    function updateRGBValues(hex) {
+   <script>
+    function updateWindowFrameColor(hex) {
         // Convert hex color to RGB
         let r = parseInt(hex.slice(1, 3), 16);
         let g = parseInt(hex.slice(3, 5), 16);
@@ -159,10 +178,13 @@
         document.getElementById('themeRed').value = r;
         document.getElementById('themeGreen').value = g;
         document.getElementById('themeBlue').value = b;
+
+        // Update the title bar color of the custom window frame
+        document.getElementById('windowTitleBar').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
     }
 
     // Initialize with default color
-    updateRGBValues(document.getElementById('themeColorPicker').value);
+    updateWindowFrameColor(document.getElementById('themeColorPicker').value);
 </script>
 
     <script>
