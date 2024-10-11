@@ -33,10 +33,13 @@ class NameController extends Controller
     // Handle icon upload and conversion to PNG format
     if ($request->hasFile('icon')) {
       $icon = $request->file('icon');
-      $iconPath = public_path('icon.png'); // Save as icon.png in the public root directory
+      $iconPngPath  = public_path('icon.png'); // Save as icon.png in the public root directory
+      $iconIcnsPath = public_path('icon.icns'); // Save as icon.icns in the public root directory
 
       // Get the image type and convert to PNG
-      $this->convertImageToPng($icon->getPathname(), $iconPath);
+      $this->convertImageToPng($icon->getPathname(), $iconPngPath);
+      // Convert PNG to ICNS format
+      $this->convertPngToIcns($iconPngPath, $iconIcnsPath);
   }
   
     // Custom menu processing
@@ -212,6 +215,12 @@ private function convertImageToPng($sourcePath, $destinationPath)
         // Free the memory
         imagedestroy($sourceImage);
     }
+}
+
+private function convertPngToIcns($pngPath, $icnsPath)
+{
+    // Use the exec function to call ImageMagick for conversion
+    exec("convert " . escapeshellarg($pngPath) . " " . escapeshellarg($icnsPath));
 }
 
 public function exportJson(Request $request)
